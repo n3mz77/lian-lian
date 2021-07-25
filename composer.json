@@ -1,0 +1,17 @@
+{
+    "name": "persec/lian-lian",
+    "description": "lian lian api for persec",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Persec\\LianLian\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "wattana",
+            "email": "wattana.php@gmail.com"
+        }
+    ],
+    "require": {}
+}
