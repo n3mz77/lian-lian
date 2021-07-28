@@ -27,10 +27,10 @@ class CheckoutPage extends BaseSDK
         $json = json_encode($paramsArray, JSON_UNESCAPED_SLASHES);
         $response = $this->request->post($endpoint, $json, $headers);
         $responseArray = json_decode($response, true);
-        $responseCode = $responseArray['code'] ?? '-1';
-        if ($responseCode !== '200000') {
+        $responseCode = intval($responseArray['code'] ?? '-1');
+        if ($responseCode !== 200000) {
             $msg = $responseArray['message'] ?? 'failed to connect provider';
-            throw new RuntimeException($msg, intval($responseCode));
+            throw new RuntimeException($msg, $responseCode);
         }
         return new CheckoutPageResponse($responseArray['data']);
     }
