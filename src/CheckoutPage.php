@@ -3,6 +3,7 @@ namespace Persec\LianLian;
 
 use Persec\LianLian\Entities\CheckoutPageRequest;
 use Persec\LianLian\Entities\CheckoutPageResponse;
+use Persec\LianLian\Entities\Response;
 use Persec\LianLian\Exceptions\RuntimeException;
 
 require_once 'helper/rsa.php';
@@ -12,11 +13,11 @@ class CheckoutPage extends BaseSDK
 {
     /**
      * @param CheckoutPageRequest $params
-     * @return CheckoutPageResponse
+     * @return Response
      * @throws Exceptions\RequestException
      * @throws Exceptions\RuntimeException
      */
-    public function request(CheckoutPageRequest $params): CheckoutPageResponse
+    public function request(CheckoutPageRequest $params): Response
     {
         $params->merchant_id = $this->merchantId;
         $endpoint = $this->getEndpoint();
@@ -32,6 +33,6 @@ class CheckoutPage extends BaseSDK
             $msg = $responseArray['message'] ?? 'failed to connect provider';
             throw new RuntimeException($msg, $responseCode);
         }
-        return new CheckoutPageResponse($responseArray['data']);
+        return new Response($responseArray);
     }
 }
