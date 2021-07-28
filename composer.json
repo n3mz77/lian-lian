@@ -13,10 +13,17 @@
             "email": "wattana.php@gmail.com"
         }
     ],
-    "require": {},
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
+    },
+    "require-dev": {
+        "vlucas/phpdotenv": "^5.3"
+    },
+    "require": {
+        "ext-json": "*",
+        "ext-openssl": "*",
+      "ext-curl": "*"
     }
 }

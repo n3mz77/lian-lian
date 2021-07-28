@@ -7,12 +7,14 @@ class BaseSDK
     private $isSandbox;
     protected $request;
     protected $merchantId;
+    private $privateKey;
 
-    public function __construct($merchantId, bool $isSandbox = false, bool $isDebugRequest = false)
+    public function __construct($merchantId, string $privateKey, bool $isSandbox = false, bool $isDebugRequest = false)
     {
         $this->isSandbox = $isSandbox;
         $this->request = new Request($isDebugRequest);
         $this->merchantId = $merchantId;
+        $this->privateKey = $privateKey;
     }
 
     public function getProductionEndpoint(): string
@@ -40,13 +42,15 @@ class BaseSDK
 
     protected function generateBodySignature (array $params): ?string
     {
-        //todo waiting for signature specification
-        return null;
+        return SignHelper::signMap($params, $this->privateKey);
     }
 
     protected function generateQuerySignature (array $params): ?string
     {
-        //todo waiting for signature specification
-        return null;
+        return SignHelper::signMap($params, $this->privateKey);
+    }
+
+    protected function convertObjectToArray(object $object): array {
+        return json_decode(json_encode($object), true);
     }
 }

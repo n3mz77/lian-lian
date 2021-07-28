@@ -4,6 +4,9 @@ namespace Persec\LianLian;
 use Persec\LianLian\Entities\CheckoutPageRequest;
 use Persec\LianLian\Entities\CheckoutPageResponse;
 
+require_once 'helper/rsa.php';
+require_once 'helper/utils.php';
+
 class CheckoutPage extends BaseSDK
 {
     /**
@@ -16,9 +19,12 @@ class CheckoutPage extends BaseSDK
     {
         $params->merchant_id = $this->merchantId;
         $endpoint = $this->getEndpoint();
-        $paramsArray = (array) $params;
-        $headers['sign'] = $this->generateBodySignature($paramsArray);
-        $response = $this->request->post($endpoint, $paramsArray, $headers);
+        $paramsArray = $this->convertObjectToArray($params);
+        $headers[] = 'Content-Type: application/json';
+        $headers[] = 'Accept: application/json';
+        $headers[] = 'sign:'.$this->generateBodySignature($paramsArray);
+        $json = json_encode($paramsArray, JSON_UNESCAPED_SLASHES);
+        $response = $this->request->post($endpoint, $json, $headers);
         $responseArray = json_decode($response, true);
         return new CheckoutPageResponse($responseArray);
     }

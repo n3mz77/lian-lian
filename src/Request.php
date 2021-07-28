@@ -19,13 +19,13 @@ class Request
     /**
      * @param $method
      * @param $url
-     * @param array $data
+     * @param $data
      * @param array $headers
      * @return string|null
      * @throws RuntimeException
      * @throws RequestException
      */
-    private function doRequest($method, $url, array $data, $headers = []): ?string
+    private function doRequest($method, $url, $data, $headers = []): ?string
     {
         $endpoint = $url;
         $methodUpper = strtoupper($method);
@@ -39,9 +39,8 @@ class Request
                 //ignore
                 break;
             case 'POST':
-                $params = json_encode($data);
                 curl_setopt($curl, CURLOPT_POST, 1);
-                curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
                 break;
             default:
                 $params = json_encode($data);
@@ -85,13 +84,13 @@ class Request
 
     /**
      * @param string $url
-     * @param array $params
+     * @param $params
      * @param array $headers
      * @return string|null
      * @throws RequestException
      * @throws RuntimeException
      */
-    public function post(string $url, array $params, array $headers = []): ?string
+    public function post(string $url, $params, array $headers = []): ?string
     {
         return $this->doRequest('POST', $url, $params, $headers);
     }
