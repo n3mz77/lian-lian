@@ -3,6 +3,7 @@ namespace Persec\LianLian;
 
 use Persec\LianLian\Entities\CheckoutPageRequest;
 use Persec\LianLian\Entities\CheckoutPageResponse;
+use Persec\LianLian\Exceptions\RuntimeException;
 
 require_once 'helper/rsa.php';
 require_once 'helper/utils.php';
@@ -26,6 +27,11 @@ class CheckoutPage extends BaseSDK
         $json = json_encode($paramsArray, JSON_UNESCAPED_SLASHES);
         $response = $this->request->post($endpoint, $json, $headers);
         $responseArray = json_decode($response, true);
-        return new CheckoutPageResponse($responseArray);
+        $responseCode = $responseArray['code'] ?? '-1';
+        if ($responseCode !== '200000') {
+            $msg = $responseArray['message'] ?? 'failed to connect provider';
+            throw new RuntimeException($msg, intval($responseCode));
+        }
+        return new CheckoutPageResponse($responseArray['data']);
     }
 }

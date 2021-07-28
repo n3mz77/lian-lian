@@ -20,7 +20,7 @@
     ],
     "extra": {
         "branch-alias": {
-            "dev-mastwr": "1.1-dev"
+            "dev-mastwr": "1.4-dev"
         }
     },
     "require-dev": {
