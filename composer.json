@@ -5,7 +5,12 @@
     "autoload": {
         "psr-4": {
             "Persec\\LianLian\\": "src/"
-        }
+        },
+        "classmap": [
+            "src/",
+            "src/entities",
+            "src/exceptions"
+        ]
     },
     "authors": [
         {
