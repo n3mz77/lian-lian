@@ -51,6 +51,6 @@ class BaseSDK
     }
 
     protected function convertObjectToArray($object): array {
-        return (array) $object;
+        return json_decode(json_encode($object), true);
     }
 }
