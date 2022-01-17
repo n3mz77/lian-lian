@@ -23,7 +23,7 @@ class CheckoutPageRequest
     {
         $this->customer = $customer;
         $this->merchant_order_id = $orderId;
-        $this->order_amount = $amount;
+        $this->order_amount = round($amount, 2);
         $this->order_currency = $currency;
         $this->order_desc = $desc;
         $this->notify_url = $notifyUrl;

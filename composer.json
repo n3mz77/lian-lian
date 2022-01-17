@@ -18,11 +18,6 @@
             "email": "wattana.php@gmail.com"
         }
     ],
-    "extra": {
-        "branch-alias": {
-            "dev-mastwr": "1.4-dev"
-        }
-    },
     "require-dev": {
         "vlucas/phpdotenv": "^5.3"
     },

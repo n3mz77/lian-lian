@@ -50,7 +50,7 @@ class BaseSDK
         return SignHelper::signMap($params, $this->privateKey);
     }
 
-    protected function convertObjectToArray(object $object): array {
-        return json_decode(json_encode($object), true);
+    protected function convertObjectToArray($object): array {
+        return (array) $object;
     }
 }
