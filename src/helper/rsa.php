@@ -9,7 +9,6 @@ function rsa_sign($data, $priKey, $sign_type=OPENSSL_ALGO_SHA1): string
 {
     $res = openssl_get_privatekey($priKey);
     openssl_sign($data, $sign, $res, $sign_type);
-    openssl_free_key($res);
     return base64_encode($sign);
 }
 
@@ -25,9 +24,5 @@ function rsa_sign($data, $priKey, $sign_type=OPENSSL_ALGO_SHA1): string
 function rsa_verify($data, $sign, $pubKey, $sign_type=OPENSSL_ALGO_SHA1): bool
 {
     $res = openssl_get_publickey($pubKey);
-    $result = (bool) openssl_verify($data, base64_decode($sign), $res, $sign_type);
-
-    openssl_free_key($res);
-
-    return $result;
+    return (bool) openssl_verify($data, base64_decode($sign), $res, $sign_type);
 }
