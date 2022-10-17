@@ -26,12 +26,9 @@ $redirectUrl = 'https://www.test.com/order/status';
 $requestParams = new CheckoutPageRequest($customer, $orderId, $amount, $currency, $desc, $notifyUrl, $redirectUrl, 'CARD');
 
 $json = json_decode(json_encode($requestParams), true);
-var_dump($json);
-
 try {
     echo "before request\n";
     $res = $checkoutPage->request($requestParams);
-    var_dump($res);
     echo "after request\n";
 } catch (Exception $e) {
     echo $e->getMessage();

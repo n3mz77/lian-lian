@@ -2,12 +2,10 @@
 namespace Persec\LianLian;
 
 use Persec\LianLian\Entities\CheckoutPageRequest;
-use Persec\LianLian\Entities\CheckoutPageResponse;
 use Persec\LianLian\Entities\Response;
 use Persec\LianLian\Exceptions\RuntimeException;
 
 require_once 'helper/rsa.php';
-require_once 'helper/utils.php';
 
 class CheckoutPage extends BaseSDK
 {
