@@ -29,7 +29,7 @@ class CheckoutPageRequest
         $this->notify_url = $notifyUrl;
         $this->redirect_url = $redirectUrl;
         $this->service = $service;
-        $this->$service = 'v1';
+        $this->version = 'v1';
         $this->payment_method = $paymentMethod;
     }
 }
