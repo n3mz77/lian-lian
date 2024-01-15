@@ -19,7 +19,7 @@ class CheckoutPageRequest
     public $notify_url;
     public $redirect_url;
 
-    public function __construct(Customer $customer, $orderId, $amount, $currency, $desc, $notifyUrl, $redirectUrl, $paymentMethod)
+    public function __construct(Customer $customer, $orderId, $amount, $currency, $desc, $notifyUrl, $redirectUrl, $paymentMethod ,$service)
     {
         $this->customer = $customer;
         $this->merchant_order_id = $orderId;
@@ -28,8 +28,8 @@ class CheckoutPageRequest
         $this->order_desc = $desc;
         $this->notify_url = $notifyUrl;
         $this->redirect_url = $redirectUrl;
-        $this->service = 'llpth.checkout.apply';
-        $this->version = 'v1';
+        $this->service = $service;
+        $this->$service = 'v1';
         $this->payment_method = $paymentMethod;
     }
 }
